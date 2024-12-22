@@ -50,9 +50,6 @@
 Module for generating synthetic phantoms.
 """
 
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 import numpy as np
 import skimage
 import skimage.transform
@@ -397,11 +394,12 @@ def _define_coords(shape):
     """
     Generate a tuple of coords in 3D with a given shape.
     """
-    mgrid = np.lib.index_tricks.nd_grid()
     cshape = np.asarray(1j) * shape
-    x, y, z = mgrid[-1:1:cshape[0], -1:1:cshape[1], -1:1:cshape[2]]
+    x, y, z = np.mgrid[-1:1:cshape[0], -1:1:cshape[1], -1:1:cshape[2]]
     return x, y, z
 
+    mgrid = np.meshgrid()
+    x, y, z = mgrid[-1:1:cshape[0], -1:1:cshape[1], -1:1:cshape[2]]
 
 def _transform(coords, p):
     """

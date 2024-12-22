@@ -198,13 +198,12 @@ def configure():
     add_bool_opt(args, "TOMOPY_USE_TIMEMORY", args.enable_timemory, args.disable_timemory)
     add_bool_opt(args, "TOMOPY_USE_SANITIZER",
                  args.enable_sanitizer, args.disable_sanitizer)
-    add_bool_opt(args, "TOMOPY_USE_PTL", args.enable_tasking, args.disable_tasking)
 
     if args.enable_sanitizer:
         args.cmake_args.append("-DSANITIZER_TYPE:STRING={}".format(args.sanitizer_type))
 
     if args.enable_cuda:
-        args.cmake_args.append("-DCUDA_ARCH={}".format(args.cuda_arch))
+        args.cmake_args.append("-DCMAKE_CUDA_ARCHITECTURES={}".format(args.cuda_arch))
 
     if len(args.cmake_args) > 0:
         print("\n\n\tCMake arguments set via command line: {}\n".format(

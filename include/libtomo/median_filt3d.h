@@ -41,7 +41,8 @@
 // ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-// Module for stripe removal.
+// C-module for median filtration and dezingering (3D and 2D case)
+// Original author: Daniil Kazantsev, Diamond Light Source Ltd.
 
 #pragma once
 
@@ -51,17 +52,9 @@
 #    define DLL
 #endif
 
-#include <stdbool.h>
-
-DLL void
-remove_stripe_sf(float* data, int dx, int dy, int dz, int size, int istart, int iend);
-
 DLL int
-stripesdetect3d_main_float(float* Input, float* Output, int window_halflength_vertical,
-                           int ratio_radius, int ncores, int dimX, int dimY, int dimZ);
-
+medianfilter_main_float(float* Input, float* Output, int radius, float mu_threshold,
+                        int ncores, int dimX, int dimY, int dimZ);
 DLL int
-stripesmask3d_main_float(float* Input, bool* Output, float threshold_val,
-                         int stripe_length_min, int stripe_depth_min,
-                         int stripe_width_min, float sensitivity, int ncores, int dimX,
-                         int dimY, int dimZ);
+medianfilter_main_uint16(unsigned short* Input, unsigned short* Output, int radius,
+                         float mu_threshold, int ncores, int dimX, int dimY, int dimZ);

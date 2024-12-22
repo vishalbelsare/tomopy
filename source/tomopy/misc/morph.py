@@ -50,9 +50,6 @@
 Module for data size morphing functions.
 """
 
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 import numpy as np
 import tomopy.util.mproc as mproc
 import tomopy.util.extern as extern
@@ -136,7 +133,7 @@ def pad(arr, axis, npad=None, mode='constant', ncore=None, **kwargs):
     slc_r_v = tuple(slc_r_v)
 
     out = np.empty(newshape, dtype=arr.dtype)
-    if arr.dtype in [np.float32, np.float64, np.bool,
+    if arr.dtype in [np.float32, np.float64, bool,
                      np.int32, np.int64, np.complex128]:
         # Datatype supported by numexpr
         with mproc.set_numexpr_threads(ncore):

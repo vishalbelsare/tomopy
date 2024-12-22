@@ -4,22 +4,27 @@ channels:
 dependencies:
   - c-compiler
   - cmake
+  - cuda-nvcc_linux-64<12.4
   - cxx-compiler
   - dxchange
-  - fftw
   - git
   - h5py
+  - libgomp
+  - libnpp-dev
   - ninja
   - numexpr
-  - numpy!=1.22.4
-  - python=3.8
+  - numpy<1.22.4|>=1.23.0
+  - python
   - pywavelets
   - scikit-image>=0.17
   - scipy
   - setuptools_scm
   - setuptools_scm_git_archive
-  # Optional packages
-  - nomkl
-  - opencv>=3.4
+# Optional packages
+  # - pyctest>0.0.10
+  # - timemory=*=py37h* # the nompi build
+  - mkl
+  - mkl-devel
+  - mkl_fft
   - pytest
   - pytest-cov

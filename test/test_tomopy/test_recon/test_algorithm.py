@@ -46,9 +46,6 @@
 # POSSIBILITY OF SUCH DAMAGE.                                             #
 # #########################################################################
 
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 import os
 import unittest
 from ..util import read_file
@@ -108,7 +105,6 @@ class ReconstructionAlgorithmTestCase(unittest.TestCase):
                         read_file('fbp.npy'),
                         rtol=1e-2)
 
-    @unittest.skipUnless(found_mkl, "Gridrec requires MKL.")
     def test_gridrec_custom(self):
         assert_allclose(
             recon(self.prj, self.ang, algorithm='gridrec', filter_name='none'),
@@ -118,7 +114,6 @@ class ReconstructionAlgorithmTestCase(unittest.TestCase):
                   filter_name='custom',
                   filter_par=np.ones(self.prj.shape[-1], dtype=np.float32)))
 
-    @unittest.skipUnless(found_mkl, "Gridrec requires MKL.")
     def test_gridrec(self):
         assert_allclose(recon(self.prj,
                               self.ang,
